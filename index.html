@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9995fa7565.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header_content">
+            <img src="assets/image/Fond_accueil.jpg" class="header_img" alt="header_img">
+            <div class="header_container">
+                <div class="logo_container">
+                    <p class="logo_title">LES PETITS PLATS</p>
+                    <img src="assets/logo/Logo.jpg" class="logo" alt="logo" />
+                </div>
+                <div class="header_info_container">
+                    <p class="header_description">CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</p>
+                    <div class="form_content">
+                         <form>
+                            <input class="research" type="text" placeholder="Rechercher une recette, un ingrédient, ..." name="research" id="research" autocomplete="off"></input>
+                            <button class="button_search" type="submit" name="search" id="search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="recette_section"></div>
+    </main>
+
+    <script src="script/templates/recette.js"></script>
+    <script src="script/utils/dataRecette.js"></script>
+    <script src="script/pages/index.js"></script>
+</body>
+</html>
