@@ -1,6 +1,18 @@
 body {
     margin: 0;
     padding: 0;
+    background: #EDEDED;
+}
+
+blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
+    margin: revert;
+    font-weight: revert;
+    font-size: revert;
+    line-height: revert;
+}
+
+*, ::after, ::before {
+    box-sizing: none;
 }
 
 /** Header **/
@@ -90,16 +102,100 @@ form button {
     color: white;
     margin-right: 10px;
     border-radius: 10px;
+    border: none;
+    cursor: pointer;
 }
 
-/** Main **/
+/** Main Dropdown **/
+
+.dropdown_content {
+    width: 84%;
+    height: 100px;
+    margin: auto;
+    display: flex;
+}
+
+/** Main recette **/
 
 
 .recette_section {
     display: flex;
     justify-content: center;
     gap: 48px 85px;
-    margin-top: 100px;
+    margin-top: 40px;
     margin-bottom: 80px;
     flex-wrap: wrap;
+}
+
+.recette_section article {
+    width: 25%;
+}
+
+.recette_imgContent {
+    width: 100%;
+    height: 350px;
+    position: relative;
+}
+
+.recette_img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.recette_timer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 70px;
+    top: 20px;
+    right: 20px;
+    border-radius: 15px;
+    background: #FFD15B;
+}
+
+.recette_timer p {
+    font-size: 12px;
+}
+
+.recette_globalContent {
+    height: 500px;
+    background: white;
+    border-radius: 0px 0px 10px 10px;
+    padding: 40px 30px;
+}
+
+.recette_title {
+    font-family: Anton;
+    margin-top: 0px;
+    font-size: 24px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.recette_descriptionContent {
+    margin-top: 60px;
+}
+
+.recette_nameDescription {
+    color: #7A7A7A;
+    font-family: Manrope;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.recette_description {
+    font-family: Manrope;
+    height: 105px;
+    font-size: 18px;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.recette_ingredientContent {
+    margin-top: 60px;
 }

@@ -11,8 +11,6 @@ async function displayData(recettes) {
 
 async function init() {
     // Récupère les datas des recettes
-    const { recettes } = await getRecettes();
-    displayData(recettes);
+    displayData(recipes);
   }
-  
   init();
