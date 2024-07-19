@@ -48,6 +48,7 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
     color: white;
     font-family: Anton;
     font-size: 40px;
+    margin: 40px 0;
 }
 
 .logo {
@@ -69,6 +70,7 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
     font-family: Anton;
     font-size: 56px;
     width: 860px;
+    margin: 56px 0;
 }
 
 .form_content {
@@ -78,6 +80,7 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
     width: 68%;
     height: 70px;
     border-radius: 10px;
+    margin-top: 15px;
 }
 
 form {
@@ -113,7 +116,20 @@ form button {
     height: 100px;
     margin: auto;
     display: flex;
+    gap: 70px;
 }
+
+#dropdown-title{
+    font-family: Manrope;
+    font-size: 17px
+}
+
+#dropdown-menu, #dropdown-menu-appliance, #dropdown-menu-ustensil {
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
 
 /** Main recette **/
 
@@ -157,10 +173,11 @@ form button {
 
 .recette_timer p {
     font-size: 12px;
+    margin: 5px 0;
 }
 
 .recette_globalContent {
-    height: 500px;
+    height: 700px;
     background: white;
     border-radius: 0px 0px 10px 10px;
     padding: 40px 30px;
@@ -184,12 +201,14 @@ form button {
     font-family: Manrope;
     font-size: 15px;
     letter-spacing: 2px;
+    margin: 20px 0;
 }
 
 .recette_description {
     font-family: Manrope;
     height: 105px;
     font-size: 18px;
+    margin: 18px 0;
     display: -webkit-box;
     overflow: hidden;
     -webkit-line-clamp: 4;
@@ -198,4 +217,25 @@ form button {
 
 .recette_ingredientContent {
     margin-top: 60px;
+}
+.recette_ingredientGlobalGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 45px;
+}
+
+.recette_ingredientDescriptionGroup {
+    width: 180px;
+}
+
+.recette_ingredient {
+    margin: 0;
+    font-family: Manrope;
+    font-weight: 600;
+}
+
+.recette_ingredientQuantity {
+    margin: 0;
+    font-family: Manrope;
+    color: #7A7A7A;
 }

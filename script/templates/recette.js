@@ -16,7 +16,8 @@ function recetteTemplate(data) {
       const recetteDescription = document.createElement("p");
       const ingredientContent = document.createElement("div");
       const ingredientNameDescription = document.createElement("h4");
-      const ingredientDescription = document.createElement("p");
+      const ingredientGlobalGroup = document.createElement("div");
+      
 
       imgContent.className = "recette_imgContent";
   
@@ -45,9 +46,8 @@ function recetteTemplate(data) {
       ingredientNameDescription.textContent = "INGRÉDIENTS"
       ingredientNameDescription.className = "recette_nameDescription";
 
-      ingredientDescription.className = "recette_ingredient";
-      ingredientDescription.textContent = ingredients;
-     
+      ingredientGlobalGroup.className ="recette_ingredientGlobalGroup"
+
   
       article.appendChild(imgContent);
       article.appendChild(globalContent);
@@ -60,7 +60,41 @@ function recetteTemplate(data) {
       descriptionContent.appendChild(recetteNameDescription);
       descriptionContent.appendChild(recetteDescription);
       ingredientContent.appendChild(ingredientNameDescription);
-      ingredientContent.appendChild(ingredientDescription);
+      ingredientContent.appendChild(ingredientGlobalGroup);
+
+      ingredients.forEach((ingredient) => {
+        const ingredientDescriptionGroup = document.createElement("div");
+        const ingredientDescription1 = document.createElement("p");
+        const ingredientDescription2 = document.createElement("p");
+
+        ingredientDescriptionGroup.className ="recette_ingredientDescriptionGroup";
+
+        ingredientDescription1.className = "recette_ingredient";
+        ingredientDescription1.textContent = ingredient.ingredient;
+
+        ingredientDescription2.className = "recette_ingredientQuantity";
+
+          // Vérifier si la quantité ou l'unité est vide
+          if (ingredient.quantity !== undefined && ingredient.unit !== undefined) {
+            // Si les deux propriétés ne sont pas vides, afficher la quantité et l'unité
+            ingredientDescription2.textContent = ingredient.quantity + " " + ingredient.unit;
+          } 
+          else if (ingredient.quantity !== undefined && ingredient.unit === undefined) {
+            // Si la quantité n'est pas vides mais que l'unité est vide, afficher seulement la quantité
+            ingredientDescription2.textContent = ingredient.quantity;
+          } else if (ingredient.quantity === undefined && ingredient.unit === undefined){
+            // Sinon, ne rien afficher
+            ingredientDescription2.textContent = "-";
+          }
+        
+        
+        
+        ingredientGlobalGroup.appendChild(ingredientDescriptionGroup)
+        ingredientDescriptionGroup.appendChild(ingredientDescription1);
+        ingredientDescriptionGroup.appendChild(ingredientDescription2);
+      })
+     
+      
       
       return article;
     }
