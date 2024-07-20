@@ -41,27 +41,3 @@ searchInput.addEventListener('input', () => {
   });
 });
 
-// Ajoute un ecoute sur le dropdown menu
-  dropdownMenu.addEventListener("click", (event) => {
-    event.preventDefault();
-    if (event.target.tagName === "A") {
-      const ingredient = event.target.textContent;
-      filterRecipes(ingredient);
-    }
-  });
-
-  dropdownMenuAppliance.addEventListener("click", (event) => {
-    event.preventDefault();
-    if (event.target.tagName === "A") {
-      const appliance = event.target.textContent;
-      filterRecipes(appliance);
-    }
-  });
-
-  dropdownMenuUstensil.addEventListener("click", (event) => {
-    event.preventDefault();
-    if (event.target.tagName === "A") {
-      const ustensil = event.target.textContent;
-      filterRecipes(ustensil);
-    }
-  });

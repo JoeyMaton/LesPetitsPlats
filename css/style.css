@@ -116,6 +116,18 @@ form button {
     height: 100px;
     margin: auto;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recette_count {
+    font-family: Anton;
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.dropdown_container {
+    display: flex;
     gap: 70px;
 }
 
