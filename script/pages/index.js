@@ -57,10 +57,10 @@ function filterRecipes(ingredient, appliance, ustensil) {
         if (ingredient && recette.ingredients.some((ing) => ing.ingredient.toLowerCase() === ingredient)) {
             return true;
         }
-        if (appliance && recette.appliance.toLowerCase().split(',').some((appliance) => appliance.trim() === appliance)) {
+        if (appliance && recette.appliance.toLowerCase() === appliance) {
             return true;
         }
-        if (ustensil && recette.ustensils.some((ustensil) => ustensil.toLowerCase() === ustensil)) {
+        if (ustensil && recette.ustensils.some((ust) => ust.toLowerCase() === ustensil)) {
             return true;
         }
         return false;
