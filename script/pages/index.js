@@ -106,6 +106,50 @@ dropdownMenu.addEventListener("click", (event) => {
     }
   });
 
+function researchRecipes(recettes) {
+    const searchInput = document.getElementById('research');
+    const searchQuery = searchInput.value.toLowerCase();
+
+    const filteredRecipes = recettes.filter((recette) => {
+    const recipeName = recette.name.toLowerCase();
+    const ingredients = recette.ingredients.map((ingredient) => ingredient.ingredient.toLowerCase());
+    const description = recette.description.toLowerCase();
+
+    if (recipeName.includes(searchQuery)) {
+      return true;
+    }
+
+    if (ingredients.some((ingredient) => ingredient.includes(searchQuery))) {
+      return true;
+    }
+
+    if (description.includes(searchQuery)) {
+      return true;
+    }
+
+    return false;
+  });
+
+  const recetteSection = document.querySelector(".recette_section");
+  recetteSection.innerHTML = '';
+
+  filteredRecipes.forEach((recette) => {
+    const recetteModel = recetteTemplate(recette);
+    const recetteCardDOM = recetteModel.getRecetteCardDOM();
+    recetteSection.appendChild(recetteCardDOM);
+  });
+
+  const recetteCount = document.querySelector(".recette_count");
+  recetteCount.innerText = filteredRecipes.length + " recettes";
+}
+
+// Ajoute un ecoute sur le form
+let form = document.querySelector("form");
+ 
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  researchRecipes(recipes);
+});
 
 async function displayData(recettes) {
     const recetteSection = document.querySelector(".recette_section");
