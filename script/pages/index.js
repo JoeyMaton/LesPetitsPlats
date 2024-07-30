@@ -19,7 +19,11 @@ function fillSelect(recettes) {
     const dropdownMenu = document.getElementById("dropdown-menu");
     const dropdownMenuAppliance = document.getElementById("dropdown-menu-appliance");
     const dropdownMenuUstensil = document.getElementById("dropdown-menu-ustensil");
+    dropdownMenu.innerHTML = '<input id="search-input" class="block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Search items" autocomplete="off">';
+    dropdownMenuAppliance.innerHTML = '<input id="search-input" class="block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Search items" autocomplete="off">';
+    dropdownMenuUstensil.innerHTML = '<input id="search-input" class="block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Search items" autocomplete="off">';
 
+    
     const allIngredientsArray = Array.from(allIngredients);
     allIngredientsArray.forEach((ingredient) => {
         const anchorElement = document.createElement("a");
@@ -32,6 +36,12 @@ function fillSelect(recettes) {
     const allAppliancesArray = Array.from(allAppliances);
     allAppliancesArray.forEach((appliance) => {
         const anchorElement = document.createElement("a");
+        const searchInput = document.createElement("input");
+        searchInput.id = "search-input";
+        searchInput.className = "block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none";
+        searchInput.type = "text";
+        searchInput.placeholder = "Search items";
+        searchInput.autocomplete = "off"
         anchorElement.href = "#";
         anchorElement.textContent = appliance;
         anchorElement.className = "block px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer rounded-md";
@@ -41,6 +51,12 @@ function fillSelect(recettes) {
     const allUstensilsArray = Array.from(allUstensils);
     allUstensilsArray.forEach((ustensil) => {
         const anchorElement = document.createElement("a");
+        const searchInput = document.createElement("input");
+        searchInput.id = "search-input";
+        searchInput.className = "block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none";
+        searchInput.type = "text";
+        searchInput.placeholder = "Search items";
+        searchInput.autocomplete = "off"
         anchorElement.href = "#";
         anchorElement.textContent = ustensil;
         anchorElement.className = "block px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer rounded-md";
@@ -48,7 +64,7 @@ function fillSelect(recettes) {
     });
 }
 
-function filterRecipes(ingredient, appliance, ustensil) {
+function filterRecipes(ingredient, appliance, ustensil, currentRecipes) {
     console.log("filterRecipes:", ingredient, appliance, ustensil);
     const recetteSection = document.querySelector(".recette_section");
     recetteSection.innerHTML = "";
@@ -62,6 +78,9 @@ function filterRecipes(ingredient, appliance, ustensil) {
         }
         if (ustensil && recette.ustensils.some((ust) => ust.toLowerCase() === ustensil)) {
             return true;
+        }  
+        if (!ingredient && !appliance && !ustensil) {
+          return displayData(recipes);
         }
         return false;
     });
@@ -74,6 +93,8 @@ function filterRecipes(ingredient, appliance, ustensil) {
     });
 
     console.log(filteredRecipes);
+
+    fillSelect(filteredRecipes);
     
     const recetteCount = document.querySelector(".recette_count");
     recetteCount.innerText = filteredRecipes.length + " recettes";
@@ -86,6 +107,8 @@ dropdownMenu.addEventListener("click", (event) => {
       const ingredient = event.target.textContent;
       console.log("Ingredient:", ingredient);
       filterRecipes(ingredient, null, null); 
+      createTag(ingredient, "ingredient");
+      toggleDropdown('dropdown-menu');
     }
   });
 
@@ -95,6 +118,8 @@ dropdownMenu.addEventListener("click", (event) => {
       const appliance = event.target.textContent;
       console.log("Appliance:", appliance);
       filterRecipes(null, appliance, null);
+      createTag(appliance, "appliance");
+      toggleDropdown('dropdown-menu-appliance');
     }
   });
 
@@ -102,9 +127,55 @@ dropdownMenu.addEventListener("click", (event) => {
     event.preventDefault();
     if (event.target.tagName === "A") {
       const ustensil = event.target.textContent;
+      console.log("Ustensil:", ustensil);
       filterRecipes(null, null, ustensil);
+      createTag(ustensil, "ustensil");
+      toggleDropdown('dropdown-menu-ustensil');
     }
   });
+
+function createTag(text, type) {
+    const tagContent = document.querySelector(".tag_content");
+    const tagContainer = document.createElement("div");
+    const tagButton = document.createElement("button");
+    const tagButtonContent = document.createElement("i");
+    const tagElement = document.createElement("span");
+    tagContainer.className = "tag_container";
+    tagButton.className = "tag_button"
+    tagButtonContent.className = "fa-solid fa-xmark";
+    tagElement.className = "tag";
+    tagElement.textContent = text;
+    tagElement.dataset.type = type;
+
+    tagButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        tagContainer.remove();
+
+        // Refiltrer les recettes avec les tags restants
+        const tags = document.querySelectorAll(".tag");
+        const ingredients = [];
+        const appliances = [];
+        const ustensils = [];
+        tags.forEach((tag) => {
+          const type = tag.dataset.type;
+          const text = tag.textContent;
+          if (type === "ingredient") {
+            ingredients.push(text);
+          } else if (type === "appliance") {
+            appliances.push(text);
+          } else if (type === "ustensil") {
+            ustensils.push(text);
+          }
+        });
+    
+        filterRecipes(ingredients.join(","), appliances.join(","), ustensils.join(","));
+    })
+
+    tagButton.appendChild(tagButtonContent);
+    tagContainer.appendChild(tagElement);
+    tagContainer.appendChild(tagButton);
+    tagContent.appendChild(tagContainer);
+}
 
 function researchRecipes(recettes) {
     const searchInput = document.getElementById('research');
