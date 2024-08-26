@@ -6,7 +6,7 @@ const dropdownMenu = document.getElementById('dropdown-menu');
 const dropdownMenuAppliance = document.getElementById('dropdown-menu-appliance');
 const dropdownMenuUstensil = document.getElementById('dropdown-menu-ustensil');
 const searchInput = document.getElementById('search-input');
-let isOpen = false; // Set to true to open the dropdown by default
+
 
 // Function to toggle the dropdown state
 function toggleDropdown(menuId) {
@@ -26,10 +26,10 @@ dropdownButtonUstensil.addEventListener('click', () => {
   toggleDropdown('dropdown-menu-ustensil');
 });
 
-// Add event listener to filter items based on input
-searchInput.addEventListener('input', () => {
+// Ajouter un écouteur d'événements pour filtrer les éléments en fonction de l'entrée
+function filterMenuItems(menu) {
   const searchTerm = searchInput.value.toLowerCase();
-  const items = dropdownMenu.querySelectorAll('a');
+  const items = menu.querySelectorAll('a');
 
   items.forEach((item) => {
     const text = item.textContent.toLowerCase();
@@ -39,5 +39,12 @@ searchInput.addEventListener('input', () => {
       item.style.display = 'none';
     }
   });
+}
+
+// Ajout de l'event listener pour filtrer les éléments de menu
+searchInput.addEventListener('input', () => {
+  filterMenuItems(dropdownMenu);
+  filterMenuItems(dropdownMenuAppliance);
+  filterMenuItems(dropdownMenuUstensil);
 });
 
