@@ -23,9 +23,9 @@ function fillSelect(recettes) {
     const dropdownMenu = document.getElementById("dropdown-menu");
     const dropdownMenuAppliance = document.getElementById("dropdown-menu-appliance");
     const dropdownMenuUstensil = document.getElementById("dropdown-menu-ustensil");
-    dropdownMenu.innerHTML = '<input id="search-input" class="block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Search items" autocomplete="off">';
-    dropdownMenuAppliance.innerHTML = '<input id="search-input" class="block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Search items" autocomplete="off">';
-    dropdownMenuUstensil.innerHTML = '<input id="search-input" class="block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Search items" autocomplete="off">';
+    dropdownMenu.innerHTML = '<input id="search-input-ingredient" class="input-dropdown block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Rechercher un ingrédient" autocomplete="off">';
+    dropdownMenuAppliance.innerHTML = '<input id="search-input-appliance" class="input-dropdown block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Rechercher un appareil" autocomplete="off">';
+    dropdownMenuUstensil.innerHTML = '<input id="search-input-ustensil" class="input-dropdown block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Rechercher un ustensil" autocomplete="off">';
 
     
     const allIngredientsArray = Array.from(allIngredients);
@@ -95,22 +95,6 @@ function filterRecipes(tags, recettes) {
     });
   });
 
-
-  fillSelect(filteredRecipes);
-
-
-  filteredRecipes.forEach((recette) => {
-    const recetteModel = recetteTemplate(recette);
-    const recetteCardDOM = recetteModel.getRecetteCardDOM();
-    recetteSection.appendChild(recetteCardDOM);
-  });
-
-  console.log(filteredRecipes);
-
-  fillSelect(filteredRecipes);
-
-  const recetteCount = document.querySelector(".recette_count");
-  recetteCount.innerText = filteredRecipes.length + " recettes";
 
   return filteredRecipes;
 }
@@ -223,17 +207,6 @@ function researchRecipes(recettes) {
 
   fillSelect(filteredRecipes);
 
-  const recetteSection = document.querySelector(".recette_section");
-  recetteSection.innerHTML = '';
-
-  filteredRecipes.forEach((recette) => {
-    const recetteModel = recetteTemplate(recette);
-    const recetteCardDOM = recetteModel.getRecetteCardDOM();
-    recetteSection.appendChild(recetteCardDOM);
-  });
-
-  const recetteCount = document.querySelector(".recette_count");
-  recetteCount.innerText = filteredRecipes.length + " recettes";
 
   return filteredRecipes;
 }
@@ -246,12 +219,22 @@ function search(tags, query) {
     filteredRecipes = researchRecipes(filteredRecipes, query);
   }
 
-  if (tags.length > 0) {
-    // Recherche par tag
-    filteredRecipes = filterRecipes(tags, filteredRecipes);
-  }
+  // Recherche par tag
+  filteredRecipes = filterRecipes(tags, filteredRecipes);
+  
+  const recetteSection = document.querySelector(".recette_section");
+  recetteSection.innerHTML = '';
 
+  filteredRecipes.forEach((recette) => {
+    const recetteModel = recetteTemplate(recette);
+    const recetteCardDOM = recetteModel.getRecetteCardDOM();
+    recetteSection.appendChild(recetteCardDOM);
+  });
+  
   fillSelect(filteredRecipes);
+
+  const recetteCount = document.querySelector(".recette_count");
+  recetteCount.innerText = filteredRecipes.length + " recettes";
 
   return filteredRecipes;
 }

@@ -5,7 +5,7 @@ const dropdownButtonUstensil = document.getElementById('dropdown-button-ustensil
 const dropdownMenu = document.getElementById('dropdown-menu');
 const dropdownMenuAppliance = document.getElementById('dropdown-menu-appliance');
 const dropdownMenuUstensil = document.getElementById('dropdown-menu-ustensil');
-const searchInput = document.getElementById('search-input');
+const searchInput = document.querySelector(".input-dropdown");
 
 
 // Function to toggle the dropdown state
@@ -27,7 +27,7 @@ dropdownButtonUstensil.addEventListener('click', () => {
 });
 
 // Ajouter un écouteur d'événements pour filtrer les éléments en fonction de l'entrée
-function filterMenuItems(menu) {
+function filterMenuItems(menu, searchInput) {
   const searchTerm = searchInput.value.toLowerCase();
   const items = menu.querySelectorAll('a');
 
@@ -43,8 +43,7 @@ function filterMenuItems(menu) {
 
 // Ajout de l'event listener pour filtrer les éléments de menu
 searchInput.addEventListener('input', () => {
-  filterMenuItems(dropdownMenu);
-  filterMenuItems(dropdownMenuAppliance);
-  filterMenuItems(dropdownMenuUstensil);
+  filterMenuItems(dropdownMenu, searchInput);
+  filterMenuItems(dropdownMenuAppliance, searchInput);
+  filterMenuItems(dropdownMenuUstensil, searchInput);
 });
-
