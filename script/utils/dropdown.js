@@ -5,8 +5,9 @@ const dropdownButtonUstensil = document.getElementById('dropdown-button-ustensil
 const dropdownMenu = document.getElementById('dropdown-menu');
 const dropdownMenuAppliance = document.getElementById('dropdown-menu-appliance');
 const dropdownMenuUstensil = document.getElementById('dropdown-menu-ustensil');
-const searchInput = document.querySelector(".input-dropdown");
-
+var searchInputIngredient = document.getElementById("search-input-ingredient");
+var searchInputAppliance = document.getElementById("search-input-appliance");
+var searchInputUstensil = document.getElementById("search-input-ustensil");
 
 // Function to toggle the dropdown state
 function toggleDropdown(menuId) {
@@ -16,20 +17,35 @@ function toggleDropdown(menuId) {
 
 dropdownButton.addEventListener('click', () => {
   toggleDropdown('dropdown-menu');
+  searchInputIngredient = document.getElementById("search-input-ingredient");
+  searchInputIngredient.addEventListener("input", () => {
+    filterMenuItems(dropdownMenu, searchInputIngredient);
+  });
 });
 
 dropdownButtonAppliance.addEventListener('click', () => {
   toggleDropdown('dropdown-menu-appliance');
+  searchInputAppliance = document.getElementById("search-input-appliance");
+  searchInputAppliance.addEventListener("input", () => {
+    filterMenuItems(dropdownMenuAppliance, searchInputAppliance);
+  });
 });
 
 dropdownButtonUstensil.addEventListener('click', () => {
   toggleDropdown('dropdown-menu-ustensil');
+  searchInputUstensil = document.getElementById("search-input-ustensil");
+  searchInputUstensil.addEventListener("input", () => {
+    filterMenuItems(dropdownMenuUstensil, searchInputUstensil);
+  });
 });
+
 
 // Ajouter un écouteur d'événements pour filtrer les éléments en fonction de l'entrée
 function filterMenuItems(menu, searchInput) {
   const searchTerm = searchInput.value.toLowerCase();
   const items = menu.querySelectorAll('a');
+  console.log(searchTerm);
+  console.log("Test");
 
   items.forEach((item) => {
     const text = item.textContent.toLowerCase();
@@ -41,9 +57,4 @@ function filterMenuItems(menu, searchInput) {
   });
 }
 
-// Ajout de l'event listener pour filtrer les éléments de menu
-searchInput.addEventListener('input', () => {
-  filterMenuItems(dropdownMenu, searchInput);
-  filterMenuItems(dropdownMenuAppliance, searchInput);
-  filterMenuItems(dropdownMenuUstensil, searchInput);
-});
+
