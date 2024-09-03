@@ -23,9 +23,9 @@ function fillSelect(recettes) {
     const dropdownMenu = document.getElementById("dropdown-menu");
     const dropdownMenuAppliance = document.getElementById("dropdown-menu-appliance");
     const dropdownMenuUstensil = document.getElementById("dropdown-menu-ustensil");
-    dropdownMenu.innerHTML = '<input id="search-input" class="block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Search items" autocomplete="off">';
-    dropdownMenuAppliance.innerHTML = '<input id="search-input" class="block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Search items" autocomplete="off">';
-    dropdownMenuUstensil.innerHTML = '<input id="search-input" class="block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Search items" autocomplete="off">';
+    dropdownMenu.innerHTML = '<input id="search-input-ingredient" class="block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Rechercher un ingredient" autocomplete="off">';
+    dropdownMenuAppliance.innerHTML = '<input id="search-input-appliance" class="block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Rechercher un appareil" autocomplete="off">';
+    dropdownMenuUstensil.innerHTML = '<input id="search-input-ustensils" class="block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Rechercher un ustensil" autocomplete="off">';
 
     
     const allIngredientsArray = Array.from(allIngredients);
