@@ -75,7 +75,7 @@ function fillSelect(recettes) {
     });
 }
 
-function filterRecipes(tags, recettes) {
+function filterRecipesByTags(tags, recettes) {
   console.log("filterRecipes:", tags);
   const recetteSection = document.querySelector(".recette_section");
   recetteSection.innerHTML = "";
@@ -176,7 +176,7 @@ function createTag(text, type) {
     tagContent.appendChild(tagContainer);
 }
 
-function researchRecipes(recettes) {
+function researchRecipesByText(recettes) {
     const searchInput = document.getElementById('research');
     const searchQuery = searchInput.value.toLowerCase();
 
@@ -216,11 +216,11 @@ function search(tags, query) {
 
   if (query) {
     // Recherche par texte
-    filteredRecipes = researchRecipes(filteredRecipes, query);
+    filteredRecipes = researchRecipesByText(filteredRecipes, query);
   }
 
   // Recherche par tag
-  filteredRecipes = filterRecipes(tags, filteredRecipes);
+  filteredRecipes = filterRecipesByTags(tags, filteredRecipes);
   
   const recetteSection = document.querySelector(".recette_section");
   recetteSection.innerHTML = '';
