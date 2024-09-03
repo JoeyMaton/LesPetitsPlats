@@ -126,22 +126,6 @@ function filterRecipesByTags(tags, recettes) {
   }
 
 
-  fillSelect(filteredRecipes);
-
-
-  for (let i = 0; i < filteredRecipes.length; i++) {
-    const recette = filteredRecipes[i];
-    const recetteModel = recetteTemplate(recette);
-    const recetteCardDOM = recetteModel.getRecetteCardDOM();
-    recetteSection.appendChild(recetteCardDOM);
-  }
-
-  console.log(filteredRecipes);
-
-  fillSelect(filteredRecipes);
-
-  const recetteCount = document.querySelector(".recette_count");
-  recetteCount.innerText = filteredRecipes.length + " recettes";
 
   return filteredRecipes;
 }
@@ -264,21 +248,6 @@ function researchRecipesByText(recettes) {
     }
 
 
-  fillSelect(filteredRecipes);
-
-  const recetteSection = document.querySelector(".recette_section");
-  recetteSection.innerHTML = '';
-
-  for (let i = 0; i < filteredRecipes.length; i++) {
-    const recette = filteredRecipes[i];
-    const recetteModel = recetteTemplate(recette);
-    const recetteCardDOM = recetteModel.getRecetteCardDOM();
-    recetteSection.appendChild(recetteCardDOM);
-  }
-
-  const recetteCount = document.querySelector(".recette_count");
-  recetteCount.innerText = filteredRecipes.length + " recettes";
-
   return filteredRecipes;
 }
 
@@ -290,12 +259,22 @@ function search(tags, query) {
     filteredRecipes = researchRecipesByText(filteredRecipes, query);
   }
 
-  if (tags.length > 0) {
-    // Recherche par tag
-    filteredRecipes = filterRecipesByTags(tags, filteredRecipes);
-  }
+  // Recherche par tag
+  filteredRecipes = filterRecipesByTags(tags, filteredRecipes);
+  
+  const recetteSection = document.querySelector(".recette_section");
+  recetteSection.innerHTML = '';
 
+  filteredRecipes.forEach((recette) => {
+    const recetteModel = recetteTemplate(recette);
+    const recetteCardDOM = recetteModel.getRecetteCardDOM();
+    recetteSection.appendChild(recetteCardDOM);
+  });
+  
   fillSelect(filteredRecipes);
+
+  const recetteCount = document.querySelector(".recette_count");
+  recetteCount.innerText = filteredRecipes.length + " recettes";
 
   return filteredRecipes;
 }
