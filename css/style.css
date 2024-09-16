@@ -89,21 +89,36 @@ form {
 }
 
 form input {
-    width: 90%;
+    width: 85%;
     height: 50px;
-    margin: auto;
+    margin: auto 10px auto 30px;
     font-size: 18px;
     color: #7A7A7A;
     border: none;
     outline: none;
 }
 
+.clear-input {
+    display: none;
+    padding: 10px;
+    text-align: center;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 26px;
+    color: #aaa;
+    width: 5%;
+  }
+  
+  .clear-input:hover {
+    color: #666;
+  }
+
 form button {
     width: 60px;
     height: 60px;
     background-color: #1B1B1B;
     color: white;
-    margin-right: 10px;
+    margin: auto 10px auto auto;
     border-radius: 10px;
     border: none;
     cursor: pointer;

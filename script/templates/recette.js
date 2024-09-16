@@ -1,5 +1,5 @@
 function recetteTemplate(data) {
-    const { name, id, image, serving, ingredients, ingredient, quantity, unit, time, description, appliance, ustansils} = data;
+    const { name, id, image, serving, ingredients, time, description, appliance, ustansils} = data;
   
     const picture = `assets/image/${image}`;
   
