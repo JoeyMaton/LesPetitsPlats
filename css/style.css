@@ -113,6 +113,24 @@ form input {
     color: #666;
   }
 
+
+.input_button {
+    display: none;
+    text-align: center;
+    right: 20px;
+    top: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #aaa;
+    width: 5%;
+    position: absolute;
+}
+
+.input_button:hover {
+    color: #666;
+}
+
+
 form button {
     width: 60px;
     height: 60px;

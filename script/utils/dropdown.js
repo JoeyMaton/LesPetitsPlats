@@ -44,8 +44,8 @@ dropdownButtonUstensil.addEventListener('click', () => {
 function filterMenuItems(menu, searchInput) {
   const searchTerm = searchInput.value.toLowerCase();
   const items = menu.querySelectorAll('a');
-  console.log(searchTerm);
-  console.log("Test");
+  //console.log(searchTerm);
+  //console.log("Test");
 
   items.forEach((item) => {
     const text = item.textContent.toLowerCase();

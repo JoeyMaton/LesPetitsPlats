@@ -23,9 +23,9 @@ function fillSelect(recettes) {
     const dropdownMenu = document.getElementById("dropdown-menu");
     const dropdownMenuAppliance = document.getElementById("dropdown-menu-appliance");
     const dropdownMenuUstensil = document.getElementById("dropdown-menu-ustensil");
-    dropdownMenu.innerHTML = '<input id="search-input-ingredient" class="input-dropdown block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Rechercher un ingrédient" autocomplete="off">';
-    dropdownMenuAppliance.innerHTML = '<input id="search-input-appliance" class="input-dropdown block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Rechercher un appareil" autocomplete="off">';
-    dropdownMenuUstensil.innerHTML = '<input id="search-input-ustensil" class="input-dropdown block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Rechercher un ustensil" autocomplete="off">';
+    dropdownMenu.innerHTML = '<input id="search-input-ingredient" class="input-dropdown block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Rechercher un ingrédient" autocomplete="off"> <span class="input_button" id="clear-input-ingredient"><i class="fa-solid fa-xmark"></i></span>';
+    dropdownMenuAppliance.innerHTML = '<input id="search-input-appliance" class="input-dropdown block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Rechercher un appareil" autocomplete="off"> <span class="input_button" id="clear-input-appliance"><i class="fa-solid fa-xmark"></i></span>';
+    dropdownMenuUstensil.innerHTML = '<input id="search-input-ustensil" class="input-dropdown block w-full px-4 py-2 text-gray-800 border rounded-md  border-gray-300 focus:outline-none" type="text" placeholder="Rechercher un ustensil" autocomplete="off"> <span class="input_button" id="clear-input-ustensil"><i class="fa-solid fa-xmark"></i></span>';
 
     
     const allIngredientsArray = Array.from(allIngredients);
@@ -156,6 +156,12 @@ function createTag(text, type) {
     tagElement.dataset.type = type;
     addedTags.push({ text, type });
 
+    
+    const selectedTagElement = document.createElement("a");
+    selectedTagElement.href = "#";
+    selectedTagElement.textContent = text;
+    selectedTagElement.className = "block px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer rounded-md";
+
     tagButton.addEventListener("click", (event) => {
         const searchInput = document.getElementById("research");
         const searchQuery = searchInput.value.toLowerCase();
@@ -169,6 +175,7 @@ function createTag(text, type) {
         const searchQuery = searchInput.value.toLowerCase();
         search(addedTags, searchQuery);
         //console.log(addedTags);
+       
 
     tagButton.appendChild(tagButtonContent);
     tagContainer.appendChild(tagElement);
